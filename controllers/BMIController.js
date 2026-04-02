@@ -41,7 +41,7 @@ export const addBMI = async (req, res) => {
 export const getBMI = async (req, res) => {
     try {
         // Use the same safe ID check here
-        const userId = req.user._id || req.user.id;
+        const userId = req.user;
         const records = await BMI.find({ userId }).sort({ createdAt: -1 });
         res.json(records);
     } catch (err) {
@@ -53,7 +53,7 @@ export const getBMI = async (req, res) => {
 export const deleteBMI = async (req, res) => {
     try {
         // Use the same safe ID check here
-        const userId = req.user._id || req.user.id;
+        const userId = req.user;
         const record = await BMI.findOneAndDelete({ 
             _id: req.params.id, 
             userId: userId 
